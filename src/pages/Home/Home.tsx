@@ -3,8 +3,7 @@ import Slider from "react-slick";
 
 //Components
 import banner_1 from './../../assets/images/background.png'
-import { ProductBox, Props } from '../../components/ProductBox/ProductBox'
-
+import { ProductBox, ProductBoxProps } from '../../components/ProductBox/ProductBox'
 
 //styles
 import './Home.scss'
@@ -16,6 +15,27 @@ const settingsFavorite = {
     slidesToShow: 1,
     slidesToScroll: 1
 };
+
+const products: ProductBoxProps[] = [
+    {
+        id: 1,
+        title: 'Product 1',
+        price: "12.99",
+        image: ""
+    },
+    {
+        id:2,
+        title: 'Product 2',
+        price: "19.99",
+        image: ""
+    },
+    {
+        id:3,
+        title: 'Product 3',
+        price: "22.99",
+        image: ""
+    }
+]
 
 export const Home = () => {
     return (
@@ -61,14 +81,21 @@ export const Home = () => {
                                 </div>
                             </div>
                         </Slider>
-
-                        <ProductBox
-                            id={product.id}
-                            title={product.title}
-                            image={product.image}
-                            price={product.price}
-                            description={product.description}
-                        />
+                        {
+                            products.map((product: ProductBoxProps) => {
+                                return (
+                                    <ProductBox
+                                        key={product.id}
+                                        id={product.id}
+                                        title={product.title}
+                                        image={product.image}
+                                        price={product.price}
+                                        isBig
+                                    />
+                                )
+                            })
+                        }
+                        
                     </div>    
                 </div>
             </div>
